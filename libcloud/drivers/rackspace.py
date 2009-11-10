@@ -185,7 +185,13 @@ class RackspaceNodeDriver(NodeDriver):
                  state=el.get('status'),
                  public_ip=public_ip,
                  private_ip=private_ip,
-                 driver=self.connection.driver)
+                 driver=self.connection.driver,
+                 extra={
+                    'password': el.get('adminPass'),
+                    'hostId': el.get('hostId'),
+                    'imageId': el.get('imageId'),
+                    'flavorId': el.get('flavorId'),
+                 })
         return n
 
     def to_sizes(self, object):
